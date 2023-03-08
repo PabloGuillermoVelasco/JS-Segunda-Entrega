@@ -52,16 +52,6 @@ class Carrito {
         });
         return total*1.21;
     }
-
-    sumarIva(){
-
-        let total = 0
-        this.carrito.forEach(el => {
-            total += el.precio * el.cantidad
-            
-        });
-        return total*1.21
-    }
 }
 
 const carritoCompra = new Carrito();
@@ -87,7 +77,7 @@ do {
                 let cantidad = Number(prompt("¿Cuantas unidades desea comprar?"))
 
                 if (!isNaN(cantidad)&&cantidad <= producto.stock && cantidad >= 1){
-                    
+
                 const productoFinal = controlador.buscar(id);               
                 productoFinal.cantidad = cantidad;
                 carritoCompra.agregar (productoFinal)
@@ -132,7 +122,115 @@ alert ("El total de su compra con IVA incluido es: $"+carritoCompra.calcularTota
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
+class Producto {
+    constructor (nombre, sabor, tamanio, precio ){
+        this.nombre = nombre;
+        this.sabor = sabor;
+        this.tamanio = tamanio;
+        this.precio = precio;
+    }
+
+    mostrar(){
+        console.log("El producto cargado es: "+this.nombre+" con sabor "+this.sabor+" , en presentación de "+this.tamanio+" y con un costo de $"+ this.precio)
+}
+}
+
 let listadoProductos = [];
 let nombreProducto = 0;
 let rta = 0;
@@ -145,8 +243,9 @@ do {
         let cargaNombre = nombreProducto;
         let cargaSabor = prompt("Ingrese el sabor");
         let cargaTamanio = prompt("Ingrese el tamaño");
-        let cargaPrecio = Number (prompt("Ingrese el precio"));
+        let cargaPrecio = prompt("Ingrese el precio");
         listadoProductos.push (new Producto(cargaNombre, cargaSabor, cargaTamanio, cargaPrecio));
+        console.log (mostrar())
     }
     console.log(listadoProductos);
     rta = prompt("Si desea ingresar mas productos presione enter, de lo contrario escriba 'fin'").toLowerCase()    
