@@ -81,7 +81,7 @@ do {
                 producto.stock -= cantidad
                 carritoCompra.agregar({producto, cantidad: cantidad })
             }else {
-                console.log("La cantidad solicitada excede a nuestro stock de: " + producto.stock)
+                console.log("La cantidad solicitada excede a nuestro stock de: " + producto.stock+". Por favor vuelva a ingresar su compra.")
             }
         }
     } else {
