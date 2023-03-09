@@ -47,7 +47,7 @@ class Carrito {
     calcularTotal() {
         let total = 0
         this.carrito.forEach(el => {
-            total += el.precio * el.cantidad
+            total += el.producto.precio * el.cantidad
 
         });
         return total * 1.21;
@@ -64,7 +64,6 @@ controlador.agregar(new Producto(4, "Barra de cereal", "Nueces", 0, 200, 50));
 controlador.agregar(new Producto(5, "Pasta de mani x 500g", "Original", 0, 500, 50));
 controlador.agregar(new Producto(6, "Pasta de mani x 500g", "Salada", 0, 500, 20));
 controlador.agregar(new Producto(7, "Pasta de mani x 500g", "Crunchy", 0, 500, 30));
-controlador.agregar(new Producto(8, "Pasta de mani x 500g", "Chocolate", 0, 600, 30));
 
 
 alert(controlador.catalogo() + "\nTodos los precios declarados son sin IVA")
@@ -72,17 +71,14 @@ alert(controlador.catalogo() + "\nTodos los precios declarados son sin IVA")
 
 do {
     let id = Number(prompt("Ingrese el número de Id del producto deseado por favor."))
-    if (!isNaN(id)) {
-        if (controlador.existe(id)) {
-
-            let cantidad = Number(prompt("¿Cuantas unidades desea comprar?"))
-            const producto = controlador.buscar(id);
-            if (!isNaN(cantidad) && cantidad <= producto.stock && cantidad >= 1) {
-                producto.stock -= cantidad
-                carritoCompra.agregar({producto, cantidad: cantidad })
-            }else {
-                console.log("La cantidad solicitada excede a nuestro stock de: " + producto.stock+". Por favor vuelva a ingresar su compra.")
-            }
+    if (!isNaN(id) && (controlador.existe(id))) {
+        let cantidad = Number(prompt("¿Cuantas unidades desea comprar?"))
+        const producto = controlador.buscar(id);
+        if (!isNaN(cantidad) && cantidad <= producto.stock && cantidad >= 1) {
+            producto.stock -= cantidad
+            carritoCompra.agregar({ producto, cantidad: cantidad })
+        } else {
+            console.log("La cantidad solicitada excede a nuestro stock de: " + producto.stock + ". Por favor vuelva a ingresar su compra.")
         }
     } else {
         alert("No existe el Id ingresado, intentelo nuevamente por favor.")
@@ -91,163 +87,4 @@ do {
 } while (rta != "fin");
 
 
-alert("El total de su compra con IVA incluido es: $" + carritoCompra.calcularTotal())
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-class Producto {
-    constructor (nombre, sabor, tamanio, precio ){
-        this.nombre = nombre;
-        this.sabor = sabor;
-        this.tamanio = tamanio;
-        this.precio = precio;
-    }
-
-    mostrar(){
-        console.log("El producto cargado es: "+this.nombre+" con sabor "+this.sabor+" , en presentación de "+this.tamanio+" y con un costo de $"+ this.precio)
-}
-}
-
-
-
-let listadoProductos = [];
-let nombreProducto = 0;
-let rta = 0;
-
-do { 
-    nombreProducto = prompt ("Ingrese el nombre del producto o fin para terminar la carga.").toLowerCase()
-    if (nombreProducto === "fin"){
-        console.log("Gracias.")
-    }else{
-        let cargaNombre = nombreProducto;
-        let cargaSabor = prompt("Ingrese el sabor");
-        let cargaTamanio = prompt("Ingrese el tamaño");
-        let cargaPrecio = prompt("Ingrese el precio");
-        listadoProductos.push (new Producto(cargaNombre, cargaSabor, cargaTamanio, cargaPrecio));
-        console.log (mostrar())
-    }
-    console.log(listadoProductos);
-    rta = prompt("Si desea ingresar mas productos presione enter, de lo contrario escriba 'fin'").toLowerCase()    
-} while (rta !="fin")
-*/
+alert("El total de su compra con IVA incluido es: $" + carritoCompra.calcularTotal()+". Muchas gracias!")
