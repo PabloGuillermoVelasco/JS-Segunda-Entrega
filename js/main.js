@@ -76,9 +76,8 @@ do {
         if(controlador.existe(id)){
 
                 let cantidad = Number(prompt("¿Cuantas unidades desea comprar?"))
-
-                if (!isNaN(cantidad)&&cantidad <= producto.stock && cantidad >= 1){
                 const producto = controlador.buscar(id);
+                if (!isNaN(cantidad)&&cantidad <= producto.stock && cantidad >= 1){
                 const productoFinal = controlador.buscar(id);               
                 productoFinal.cantidad = cantidad;
                 carritoCompra.agregar (productoFinal)
